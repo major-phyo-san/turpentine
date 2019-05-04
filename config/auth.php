@@ -47,6 +47,13 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'hall_user'=>[
+            'driver'=>'session',
+            'provider'=>'hall_user',
+        ],
+
+        'hall_owner'=>[],
     ],
 
     /*
@@ -66,21 +73,15 @@ return [
     |
     */
 
-    'providers' => [        
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
-
-        /*'hall_owner'=>[
-            'driver'=>'eloquent',
-            'model'=>App\HallOwner::class
-        ],*/
-
+    'providers' => [ 
         'hall_user'=>[
             'driver'=>'eloquent',
-            'model'=>App\HallUser::class
+            'model'=>App\Models\HallUser::class
+        ],
+
+        'hall_owner'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\HallOwner::class
         ],
     ],
 

@@ -13,4 +13,9 @@ class StaticPagesController extends Controller
 	{
 		return view('home');
 	}
+
+	function HallUserLoggedIn()
+	{
+		return view('hall-user');
+	}
 }

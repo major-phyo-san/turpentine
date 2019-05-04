@@ -1,5 +1,6 @@
 <?php
-namespace App\Http\Controllers;
+
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -7,32 +8,23 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 
-use App\HallUser;
+use App\Models\HallUser;
+use App\Models\HallOwner;
 
 /**
  * 
  */
-class HallUserAuthController extends Controller
+class RegisterController extends Controller
 {
-	/*public function __construct()
-	{
-		$this->middleware('guest')->except('logout');
-		$this->middleware('guest:HallUser')->except('logout');
-	}*/
-
-	public function showLoginForm()
-	{
-		return view('auth.login');
-	}
-	
-	public function showRegisterForm()
+		
+	public function showHallUserRegisterForm()
 	{
 		return view('auth.register');
 	}
 
-	protected function HallUserLogin()
+	public function showHallOwnerRegisterForm()
 	{
-		return 'Logged in';
+		return view('auth.register');
 	}
 
 	protected function validator(array $data)
@@ -60,4 +52,22 @@ class HallUserAuthController extends Controller
 			return redirect()->intended('/login/hall-user');
 		}
 	}
+
+	protected function HallOwnerRegister(Request $request)
+	{
+		if($this->validator($request->all())->validate())
+		{
+			$hallOwner = HallOwner::create([
+				'name'=>$request['name'],
+				'email'=>$request['email'],
+				'phone'=>$request['phone'],
+				'password'=>Hash::make($request['password']),
+			]);
+
+			return redirect()->intended('/login/hall-owner');
+		}
+
+	}
+
+
 }

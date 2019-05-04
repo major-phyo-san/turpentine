@@ -1,4 +1,4 @@
 @extends('template')
 @section('main')
-<p>Hi Hall User</p>
+<p>You're now Logged in as Hall User
 @stop

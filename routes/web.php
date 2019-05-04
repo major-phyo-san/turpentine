@@ -14,14 +14,16 @@
 Route::get('/', 'StaticPagesController@index');
 Route::get('/home', 'StaticPagesController@index');
 
-Route::get('/login/hall-user', 'HallUserAuthController@showLoginForm' );
-Route::get('/register/hall-user', 'HallUserAuthController@showRegisterForm' );
+Route::get('/login/hall-user', 'Auth\LoginController@showHallUserLoginForm' );
+Route::get('/register/hall-user', 'Auth\RegisterController@showHallUserRegisterForm' );
 
-Route::get('/login/hall-owner', 'HallOwnerAuthController@showLoginForm' );
-Route::get('/register/hall-owner', 'HallOwnerAuthController@showRegisterForm' );
+Route::get('/login/hall-owner', 'Auth\LoginController@showHallOwnerLoginForm' );
+Route::get('/register/hall-owner', 'Auth\RegisterController@showHallOwnerRegisterForm' );
 
-Route::post('/login/hall-user', 'HallUserAuthController@HallUserLogin');
-Route::post('/register/hall-user', 'HallUserAuthController@HallUserRegister');
+Route::post('/login/hall-user', 'Auth\LoginController@HallUserLogin');
+Route::post('/register/hall-user', 'Auth\RegisterController@HallUserRegister');
 
-Route::post('/login/hall-owner', 'HallOwnerAuthController@HallOwnerLogin');
-Route::post('/register/hall-owner', 'HallOwnerAuthController@HallOwnerRegister');
+Route::post('/login/hall-owner', 'Auth\LoginController@HallOwnerLogin');
+Route::post('/register/hall-owner', 'Auth\RegisterController@HallOwnerRegister');
+
+Route::get('/hall-user', 'StaticPagesController@HallUserLoggedIn');
