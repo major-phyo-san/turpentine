@@ -1,6 +1,14 @@
 @extends('template');
 @section('main')
 <h2>Register</h2>
+<?php if(count($errors)) { ?>
+	<div class="error">
+		<ul> <?php foreach($errors->all() as $error) {?>
+			<li><?php echo $error; ?></li>
+		<ul>	
+	</div>
+<?php } } ?>
+
 <form method="post" action="">
 	<input type="hidden" name="_token" value="<?= csrf_token() ?>">
 	<input type="text" name="name" required placeholder="Name" autocomplete="name"  autofocus autocomplete>

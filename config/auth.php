@@ -53,7 +53,10 @@ return [
             'provider'=>'hall_user',
         ],
 
-        'hall_owner'=>[],
+        'hall_owner'=>[
+            'driver'=>'session',
+            'provider'=>'hall_owner',
+        ],
     ],
 
     /*

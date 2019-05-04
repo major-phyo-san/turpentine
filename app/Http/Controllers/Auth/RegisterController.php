@@ -51,6 +51,8 @@ class RegisterController extends Controller
 
 			return redirect()->intended('/login/hall-user');
 		}
+
+		return back()->withInput($request->only('email','remember'))->withErrors($this->validator);
 	}
 
 	protected function HallOwnerRegister(Request $request)
@@ -66,6 +68,8 @@ class RegisterController extends Controller
 
 			return redirect()->intended('/login/hall-owner');
 		}
+
+		return back()->withInput($request->only('email','remember'))->withErrors($this->validator);
 
 	}
 

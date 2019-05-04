@@ -42,8 +42,22 @@ class LoginController extends Controller
 		return back()->withInput($request->only('email','remember'))->withErrors(array('Login failed, try again'));
 	}
 
-	public function HallOwnerLogin()
+	public function HallOwnerLogin(Request $request)
 	{
+		$this->validate($request, [
+			'email'=>'required|email',
+			'password'=>'required|min:8'
+		]);
 
+		if(Auth::guard('hall_owner')->attempt([
+			'email'=>$request->email, 
+			'password'=>$request->password], 
+			$request->get('remember')))
+		{
+			return redirect()->intended('/hall-owner');
+
+		}
+
+		return back()->withInput($request->only('email','remember'))->withErrors(array('Login failed, try again'));
 	}
 }
