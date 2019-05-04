@@ -51,10 +51,10 @@ class HallUserAuthController extends Controller
 		if($this->validator($request->all())->validate())
 		{
 			$hallUser = HallUser::create([
-				'hall_user_name'=>$request['name'],
-				'hall_user_email'=>$request['email'],
-				'hall_user_phone'=>$request['phone'],
-				'hall_user_password'=>Hash::make($request['password']),
+				'name'=>$request['name'],
+				'email'=>$request['email'],
+				'phone'=>$request['phone'],
+				'password'=>Hash::make($request['password']),
 			]);
 
 			return redirect()->intended('/login/hall-user');
