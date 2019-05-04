@@ -35,6 +35,7 @@ return [
     |
     */
 
+
     'guards' => [
         'web' => [
             'driver' => 'session',
@@ -65,16 +66,22 @@ return [
     |
     */
 
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
-        ],
+    'providers' => [        
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        /*'hall_owner'=>[
+            'driver'=>'eloquent',
+            'model'=>App\HallOwner::class
+        ],*/
+
+        'hall_user'=>[
+            'driver'=>'eloquent',
+            'model'=>App\HallUser::class
+        ],
     ],
 
     /*
