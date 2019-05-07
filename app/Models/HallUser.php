@@ -15,10 +15,10 @@ class HallUser extends Authenticatable
 		'name',
 		'email',
 		'phone',
+		'password',
 	];
 
-	protected $hidden = [
-		'password',
+	protected $hidden = [		
 		'remember_token',
 	];
 }

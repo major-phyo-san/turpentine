@@ -25,39 +25,41 @@ class LoginController extends Controller
 
 	public function HallUserLogin(Request $request)
 	{
-		$this->validate($request, [
-			'email'=>'required|email',
-			'password'=>'required|min:8'
-		]);
+		if($this->validate($request, ['email'=>'required|email', 'password'=>'required|min:8']))
 
-		if(Auth::guard('hall_user')->attempt([
-			'email'=>$request->email, 
-			'password'=>$request->password], 
-			$request->get('remember')))
 		{
-			return redirect()->intended('/hall-user');
+			$input = $request->all();
+			if(Auth::guard('hall_user')->attempt([
+				'email'=>$input['email'],
+				'password'=>$input['password'],
+			]))
+			{
+				return view('hall-user');
+			}
 
+			return back()->withErrors(array('Login failed, the email or password is incorrect'));
 		}
 
-		return back()->withInput($request->only('email','remember'))->withErrors(array('Login failed, try again'));
+		return back()->withInput($request->only('email','remember'))->withErrors(array('Invalid Login credentials, try again'));
 	}
 
 	public function HallOwnerLogin(Request $request)
 	{
-		$this->validate($request, [
-			'email'=>'required|email',
-			'password'=>'required|min:8'
-		]);
+		if($this->validate($request, ['email'=>'required|email', 'password'=>'required|min:8']))
 
-		if(Auth::guard('hall_owner')->attempt([
-			'email'=>$request->email, 
-			'password'=>$request->password], 
-			$request->get('remember')))
 		{
-			return redirect()->intended('/hall-owner');
+			$input = $request->all();
+			if(Auth::guard('hall_owner')->attempt([
+				'email'=>$input['email'],
+				'password'=>$input['password'],
+			]))
+			{
+				return view('hall-owner');
+			}
 
+			return back()->withErrors(array('Login failed, the email or password is incorrect'));
 		}
 
-		return back()->withInput($request->only('email','remember'))->withErrors(array('Login failed, try again'));
+		return back()->withInput($request->only('email','remember'))->withErrors(array('Invalid Login credentials, try again'));
 	}
 }

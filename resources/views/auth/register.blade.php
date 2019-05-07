@@ -7,7 +7,9 @@
 			<li><?php echo $error; ?></li>
 		<ul>	
 	</div>
-<?php } } ?>
+<?php } 
+
+} ?>
 
 <form method="post" action="">
 	<input type="hidden" name="_token" value="<?= csrf_token() ?>">
@@ -17,10 +19,10 @@
 	<br>
 	<input type="phone" name="phone" required placeholder="Phone Number" autofocus autocomplete>
 	<br>
-	<input type="password" name="password" required placeholder="Password" autofocus autocomplete>
+	<input type="password" name="password" required placeholder="Password" autofocus>
 	<br>
-	<input type="password" name="password_agian" required placeholder="Re-type Password" autofocus="">
+	<input type="password" name="password_confirmation" required placeholder="Re-type Password" autofocus>
 	<br>
-	<input type="submit" name="Register">
+	<input type="submit" name="Register" value="Register">
 </form>
 @stop

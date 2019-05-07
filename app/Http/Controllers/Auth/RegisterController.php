@@ -27,20 +27,19 @@ class RegisterController extends Controller
 		return view('auth.register');
 	}
 
-	protected function validator(array $data)
+	protected function validateHallUserRegister(array $data)
 	{
 		return Validator::make($data,[
-			'name'=>['required', 'string', 'max:255'],
-			'email'=>['required', 'string', 'email', 'max:255', 'unique:hall_users'],
-			'phone'=>['required', 'string','unique:hall_users'],
-			'password'=>['required', 'min:8'],
-			'password_again'=>['same:password'],
+			'name'=>'required|string|max:255',
+			'email'=>'required|string|max:255|email|unique:hall_users',
+			'phone'=>'required|string|max:255|unique:hall_users',
+			'password'=>'required|min:8|confirmed',			
 		]);
 	}
 
 	protected function HallUserRegister(Request $request)
 	{
-		if($this->validator($request->all())->validate())
+		if($this->validateHallUserRegister($request->all())->validate())
 		{
 			$hallUser = HallUser::create([
 				'name'=>$request['name'],
@@ -52,12 +51,22 @@ class RegisterController extends Controller
 			return redirect()->intended('/login/hall-user');
 		}
 
-		return back()->withInput($request->only('email','remember'))->withErrors($this->validator);
+		return back()->withInput($request->only('email','remember'))->withErrors($this->validateHallUserRegister);
+	}
+
+	protected function validateHallOwnerRegister(array $data)
+	{
+		return Validator::make($data,[
+			'name'=>'required|string|max:255',
+			'email'=>'required|string|max:255|email|unique:hall_owners',
+			'phone'=>'required|string|max:255|unique:hall_owners',
+			'password'=>'required|min:8|confirmed',			
+		]);
 	}
 
 	protected function HallOwnerRegister(Request $request)
 	{
-		if($this->validator($request->all())->validate())
+		if($this->validateHallOwnerRegister($request->all())->validate())
 		{
 			$hallOwner = HallOwner::create([
 				'name'=>$request['name'],
@@ -69,7 +78,7 @@ class RegisterController extends Controller
 			return redirect()->intended('/login/hall-owner');
 		}
 
-		return back()->withInput($request->only('email','remember'))->withErrors($this->validator);
+		return back()->withInput($request->only('email','remember'))->withErrors($this->validateHallOwnerRegister);
 
 	}
 
