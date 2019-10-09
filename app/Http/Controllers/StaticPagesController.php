@@ -14,9 +14,9 @@ class StaticPagesController extends Controller
 		return view('home');
 	}
 
-	function HallUserLoggedIn()
+	function HallUserLoggedIn($id)
 	{
-		return view('hall-user');
+		return view('hall-users.dashboard');
 	}
 
 	function HallOwnerLoggedIn()

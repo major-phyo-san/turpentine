@@ -19,6 +19,7 @@ class HallOwner extends Authenticatable
     ];
 
     protected $hidden = [    	
-    	'remember_token',
+    	'password',
+        'remember_token',
     ];    
 }

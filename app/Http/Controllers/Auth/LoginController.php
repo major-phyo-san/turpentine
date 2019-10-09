@@ -34,7 +34,8 @@ class LoginController extends Controller
 				'password'=>$input['password'],
 			]))
 			{
-				return view('hall-user');
+				$hallUser = Auth::guard('hall_user')->user();
+				return redirect()->route('hall-users.account',[$hallUser]);
 			}
 
 			return back()->withErrors(array('Login failed, the email or password is incorrect'));

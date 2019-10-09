@@ -26,5 +26,5 @@ Route::post('/register/hall-user', 'Auth\RegisterController@HallUserRegister');
 Route::post('/login/hall-owner', 'Auth\LoginController@HallOwnerLogin');
 Route::post('/register/hall-owner', 'Auth\RegisterController@HallOwnerRegister');
 
-Route::get('/hall-user', 'StaticPagesController@HallUserLoggedIn');
+Route::get('/hall-users/{id}/account', 'StaticPagesController@HallUserLoggedIn')->name('hall-users.account');
 Route::get('/hall-owner', 'StaticPagesController@HallOwnerLoggedIn');
